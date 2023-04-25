@@ -1,4 +1,4 @@
-console.log("BlueLiteFilter: loaded ext");
+console.log("BlueLiteBlocker: loaded ext");
 
 // todo: probably wait for settings rather than overwriting once we get sent them
 let settings = {};

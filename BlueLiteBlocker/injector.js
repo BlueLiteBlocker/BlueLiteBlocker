@@ -51,7 +51,7 @@ async function install_extension() {
         await write_local_storage({'settings': settings});
     }
 
-    // inject BlueLiteFilter worker script into webpage
+    // inject BlueLiteBlocker worker script into webpage
     let s = document.createElement('script');
     s.type = "text/javascript";
     s.async = false;

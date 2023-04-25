@@ -1,4 +1,4 @@
-# ![Logo](BlueLiteFilter/icons/logo-48.png) BlueLiteBlocker 
+# ![Logo](BlueLiteBlocker/icons/logo-48.png) BlueLiteBlocker 
 
 ### Hide tweets from Twitter Blue users you don't follow without needing to mute or block them.
 ### Customizable to allow tweets from accounts with more than a set number of followers.
