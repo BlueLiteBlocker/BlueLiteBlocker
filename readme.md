@@ -9,6 +9,8 @@ Customizable to allow tweets from accounts with more than a set number of follow
 
 **Firefox**: waiting on store approval, use [source build](#Install-Instructions) for now.
 
+[Demo Video](https://www.youtube.com/watch?v=nyQomTilJXo)
+
 ![Soft Filter Example](/example_screenshot.png?1)
 
 
@@ -22,7 +24,7 @@ The extension intercepts HTTP responses from Twitter's API and parses the tweet 
 
 Developing this extension required reverse engineering the Twitter API and client, 
 so it may stop working if major changes to the platform are made. Please submit an issue to let me know about any bugs/suggestions.
--- -
+
 ### Settings
 **Note**: this extension will not hide tweets from people you follow regardless of Blue status.
 
