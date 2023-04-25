@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+<form name="block-settings" id="block-settings">
+    Hard Filter - remove filtered tweets from timeline entirely instead of just collapsing them
+    (note: this happens with search and notification results regardless due to Twitter limitation)<br/>
+    Follower Threshold - don't hide or block tweets from accounts with more than X followers (default 100,000)</br></br>
+    Note: the auto-hide is completely passive and does not need to send requests to Twitter</br></br>
+    <label>Hard Filter <input type="checkbox" id="hard-hide" name="hard-hide" /></label><br/>
+    <label>Follower Threshold <input type="number" id="threshold" name="threshold" value="100000"/></label><br/>
+    <button type="submit">Save</button>
+</form>
+
+<script src="settings.js"></script>
+</body>
+</html>
