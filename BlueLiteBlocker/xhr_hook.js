@@ -1,11 +1,11 @@
 console.log("BlueLiteBlocker: loaded ext");
 
 // todo: probably wait for settings rather than overwriting once we get sent them
-let settings = {};
+let blf_settings = {};
 
 // add an event listener to receive settings update from extension config
 window.addEventListener("BLFsettingsUpdate", function(event) {
-    settings = event.detail;
+    blf_settings = event.detail;
 });
 
 class TwitterUser {
@@ -186,7 +186,7 @@ function is_bad_user(user) {
       - aren't followed by us
     */
     return user.is_bluecheck
-        && user.followers < settings.follow_limit
+        && user.followers < blf_settings.follow_limit
         && user.we_follow === false
         && user.verified_type === '';
 }
@@ -195,7 +195,7 @@ function handleTweet(entry_type, item_content) {
     const user = get_tweet_user_info(item_content);
 
     if(is_bad_user(user)) {
-        hide_tweet(item_content['tweet_results'], settings.hard_hide);
+        hide_tweet(item_content['tweet_results'], blf_settings.hard_hide);
         console.log(`Tweet filtered from @${user.handle} (Blue User - ${user.followers} followers)`);
         return true;
     }
@@ -298,7 +298,7 @@ function parse_timeline(timeline_type, json) {
                         }else {
                             const blocked_user = handleTweet(entry['content']['entryType'], item['item']['itemContent']);
                             // if hard filtering is enabled we should also hard filter replies to avoid breaking thread
-                            if (blocked_user && settings.hard_hide) {
+                            if (blocked_user && blf_settings.hard_hide) {
                                 remove_replies = true;
                             }
                         }
