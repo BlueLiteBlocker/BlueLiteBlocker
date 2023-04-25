@@ -1,6 +1,7 @@
 # ![Logo](BlueLiteFilter/icons/logo-48.png) BlueLiteBlocker 
 
-### Hide tweets from Twitter Blue users without needing to mute or block them (except people you follow, or people with more than a customizable follower count).
+### Hide tweets from Twitter Blue users you don't follow without needing to mute or block them.
+### Customizable to allow tweets from checks  with more than a set number of followers.
 ### Currently Supports: FireFox, Chrome
 
 ![Soft Filter Example](/example_screenshot.png)
