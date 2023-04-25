@@ -20,6 +20,7 @@ so it may stop working if major changes to the platform are made. Please submit 
 **Default** - Tweets from Twitter Blue users will be collapsed in the timeline/replies as seen in the image below. 
 
 Note: this does not work for search/notification, so in those cases the extension will just remove the tweet.
+
 ![Soft Filter Example](screenshot_softblock.png)
 
 **Hard** - Tweets from Twitter Blue users will never show up in your feed. This is somewhat buggy and needs further
