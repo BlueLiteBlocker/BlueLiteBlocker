@@ -1,18 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="min-width:200px;max-width:400px;background-color:#191919;">
 <head>
     <meta charset="utf-8" />
 </head>
 
 <body>
+<style>
+    #threshold, #submit {
+        background-color:dimgray;
+        border-width: 0;
+        color: #fff;
+        padding: 10px;
+    }
+
+    html {
+        font: normal 16px/1.6 'Open Sans', helvetica, arial, sans-serif;
+        min-width: 200px;
+        max-width: 400px;
+        background-color: #191919;
+        font-size: 110%;
+        color: #cbc9c9;
+    }
+</style>
 <form name="block-settings" id="block-settings">
-    Hard Filter - remove filtered tweets from timeline entirely instead of just collapsing them
-    (note: this happens with search and notification results regardless due to Twitter limitation)<br/>
-    Follower Threshold - don't hide or block tweets from accounts with more than X followers (default 100,000)</br></br>
+    <strong>Hard Filtering</strong><br/>
+    removes filtered tweets from timeline entirely instead of just collapsing them<br/><br/>
+
+    <strong>Follower Threshold</strong><br/>
+    the minimum number of followers a Twitter Blue user must have to avoid filtering</br></br>
+
     Note: the auto-hide is completely passive and does not need to send requests to Twitter</br></br>
-    <label>Hard Filter <input type="checkbox" id="hard-hide" name="hard-hide" /></label><br/>
-    <label>Follower Threshold <input type="number" id="threshold" name="threshold" value="100000"/></label><br/>
-    <button type="submit">Save</button>
+    <label><strong>Enable Hard Filter </strong><input type="checkbox" id="hard-hide" name="hard-hide" /></label><br/><br/>
+    <label><strong>Follower Threshold </strong><input type="text" id="threshold" name="threshold" value="100000"/></label><br/><br/>
+    <button type="submit" id="submit" name="submit">Save Settings</button>
+    <br/><br/>
 </form>
 
 <script src="settings.js"></script>
