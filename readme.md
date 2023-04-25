@@ -2,7 +2,10 @@
 #### Hide tweets from Twitter Blue users without needing to mute or block them.
 #### Currently Supports: FireFox, Chrome
 
+### Install Instructions
+Chrome: https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked
 
+FireFox: https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/
 
 ### How It Works
 The extension intercepts HTTP responses from Twitter's API and parses the tweet lists for Twitter Blue users. 
