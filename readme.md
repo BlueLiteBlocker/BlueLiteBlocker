@@ -1,9 +1,8 @@
-# BlueLiteBlocker
+# ![Soft Filter Example](BlueLiteFilter/icons/logo-48.png) BlueLiteBlocker 
 
 #### Hide tweets from Twitter Blue users without needing to mute or block them.
 #### Currently Supports: FireFox, Chrome
 
-![Soft Filter Example](BlueLiteFilter/icons/logo-128.png)
 
 ### Install Instructions
 Chrome: https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked
