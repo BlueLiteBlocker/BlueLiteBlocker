@@ -2,11 +2,22 @@ console.log("BlueLiteBlocker: loaded ext");
 
 // todo: probably wait for settings rather than overwriting once we get sent them
 let blf_settings = {};
+let blf_exception_log = [];
 
 // add an event listener to receive settings update from extension config
 window.addEventListener("BLFsettingsUpdate", function(event) {
     blf_settings = event.detail;
 });
+
+function log_exception(e) {
+    while (blf_exception_log.length >= 10) {
+        blf_exception_log.shift();
+    }
+
+    blf_exception_log.push(e);
+    console.log('log_exception() got exception: ');
+    console.log(e);
+}
 
 class TwitterUser {
     constructor(handle, name, followers, verified_type, we_follow, is_bluecheck, is_blocked) {
@@ -64,11 +75,18 @@ XMLHttpRequest.prototype.open = function() {
 function set_response_hook(xhr, timeline_type) {
     function getter() {
         delete xhr.responseText;
-        let json = JSON.parse(xhr.responseText);
-        parse_timeline(timeline_type, json);
-        setup();
+        let xhr_response = xhr.responseText;
 
-        return JSON.stringify(json);
+        try {
+            let json = JSON.parse(xhr_response);
+            parse_timeline(timeline_type, json);
+            xhr_response = JSON.stringify(json);
+        }catch (e) {
+            log_exception(e);
+        }
+
+        setup();
+        return xhr_response;
     }
 
     function setter(str) {
