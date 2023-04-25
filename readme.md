@@ -1,6 +1,6 @@
 # ![Logo](BlueLiteFilter/icons/logo-48.png) BlueLiteBlocker 
 
-### Hide tweets from Twitter Blue users without needing to mute or block them. 
+### Hide tweets from Twitter Blue users without needing to mute or block them (except people you follow, or people with more than a customizable follower count).
 ### Currently Supports: FireFox, Chrome
 
 ![Soft Filter Example](/example_screenshot.png)
@@ -38,6 +38,7 @@ testing.
 #### Hard Filter Mode
 - may hit Twitter rate limit if lots of responses are from Blue users (seems like an API limitation, but may be fixable)
 - some issues with feed moving after loading new tweets, may be due to Twitter expecting more Tweets than we show
+- 
 
 #### Soft Filter Mode
 - no apparent way so collapse Tweets in notifications or search. We currently use hard filtering on these.
