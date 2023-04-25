@@ -197,7 +197,9 @@ function handleTweet(entry_type, item_content) {
     if(is_bad_user(user)) {
         hide_tweet(item_content['tweet_results'], settings.hard_hide);
         console.log(`Tweet filtered from @${user.handle} (Blue User - ${user.followers} followers)`);
+        return true;
     }
+    return false;
 }
 
 function parse_search(json) {
@@ -281,11 +283,25 @@ function parse_timeline(timeline_type, json) {
 
                 // handle tweet threads
                 case 'TimelineTimelineModule':
+                    let remove_replies = false;
                     let entry_array = entry['content']['items'];
 
                     //todo: we should probably delete all replies to a Twitter blue user
                     entry_array.forEach((item, index) => {
-                        handleTweet(entry['content']['entryType'], item['item']['itemContent']);
+                        if (remove_replies) {
+                            /*
+                                todo: needs testing.
+                                this could break the client if a deleted reply is referenced anywhere else.
+                                afik only feedback boxes reference tweet objects, which shouldn't happen with replies.
+                             */
+                            delete entry['content']['items'][index];
+                        }else {
+                            const blocked_user = handleTweet(entry['content']['entryType'], item['item']['itemContent']);
+                            // if hard filtering is enabled we should also hard filter replies to avoid breaking thread
+                            if (blocked_user && settings.hard_hide) {
+                                remove_replies = true;
+                            }
+                        }
                     });
                     break
             }
