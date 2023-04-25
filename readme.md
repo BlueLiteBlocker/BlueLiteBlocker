@@ -4,7 +4,7 @@
 ### Customizable to allow tweets from accounts with more than a set number of followers.
 ### Currently Supports: FireFox, Chrome
 
-![Soft Filter Example](/example_screenshot.png)
+![Soft Filter Example](/example_screenshot.png?1)
 
 
 ### Install Instructions
