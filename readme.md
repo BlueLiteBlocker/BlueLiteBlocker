@@ -15,7 +15,7 @@ You can customize the follower threshold and choose between collapsing or removi
 | Latest Release | Release Version |
 |----------------| ------------- |
 | Source Code    | [v0.0.0.5](https://github.com/MalwareTech/BlueLiteBlocker/archive/refs/tags/v0.0.0.5.zip) |
-| Chrome Store   | [v0.0.0.3](https://chrome.google.com/webstore/detail/blueliteblocker/gimbefnamedicgajjballjjhanhnpjce)  |
+| Chrome Store   | [v0.0.0.5](https://chrome.google.com/webstore/detail/blueliteblocker/gimbefnamedicgajjballjjhanhnpjce)  |
 | Firefox Store  | still waiting on approval.  |
 
 [**Demo Video**](https://www.youtube.com/watch?v=nyQomTilJXo)
