@@ -8,10 +8,13 @@ You can customize the follower threshold and choose between collapsing or removi
 
 **Currently Supports**: FireFox, Chrome
 ### Release Builds
-**Note:** the WebStore take a while to approve extension updates. If the store version doesn't match the GitHub version, consider installing from source instead.
+**Note:** the WebStore take a while to approve extension updates. If the store version doesn't match the GitHub version, consider installing from [source](How To Install From Source) instead.
 
-**Chrome (v0.0.0.3):** https://chrome.google.com/webstore/detail/blueliteblocker/gimbefnamedicgajjballjjhanhnpjce
-**Firefox**: waiting on store approval, use [source build](#Install-Instructions) for now.
+| Latest Release | Release Version |
+|----------------| ------------- |
+| Source Code    | [v0.0.0.5](https://github.com/MalwareTech/BlueLiteBlocker/archive/refs/tags/v0.0.0.5.zip) |
+| Chrome Store   | [v0.0.0.3](https://chrome.google.com/webstore/detail/blueliteblocker/gimbefnamedicgajjballjjhanhnpjce)  |
+| Firefox Store  | still waiting on approval.  |
 
 [**Demo Video**](https://www.youtube.com/watch?v=nyQomTilJXo)
 <p style="text-align: center;" align="center">
@@ -20,7 +23,7 @@ example of Tweet collapsing
 </p>
 
 
-### Install Instructions
+### How To Install From Source
 Chrome: https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked
 
 FireFox: https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/
