@@ -8,11 +8,12 @@ You can customize the follower threshold and choose between collapsing or removi
 
 **Currently Supports**: FireFox, Chrome
 ### Release Builds
-**Chrome**: https://chrome.google.com/webstore/detail/blueliteblocker/gimbefnamedicgajjballjjhanhnpjce (v0.0.0.3)
+**Note:** the WebStore take a while to approve extension updates. If the store version doesn't match the GitHub version, consider installing from source instead.
 
+**Chrome (v0.0.0.3):** https://chrome.google.com/webstore/detail/blueliteblocker/gimbefnamedicgajjballjjhanhnpjce
 **Firefox**: waiting on store approval, use [source build](#Install-Instructions) for now.
 
-[Demo Video](https://www.youtube.com/watch?v=nyQomTilJXo)
+[**Demo Video**](https://www.youtube.com/watch?v=nyQomTilJXo)
 <p style="text-align: center;" align="center">
   <img alt="" style="max-width: 100%;" src="/example_screenshot.png?1">
 example of Tweet collapsing
