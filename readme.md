@@ -10,6 +10,8 @@ You can customize the follower threshold and choose between collapsing or removi
 ### Release Builds
 **Note:** the WebStore take a while to approve extension updates. If the store version doesn't match the GitHub version, consider installing from [source](#How-To-Install-From-Source) instead.
 
+**[How to install from source](#How-To-Install-From-Source)**
+
 | Latest Release | Release Version |
 |----------------| ------------- |
 | Source Code    | [v0.0.0.5](https://github.com/MalwareTech/BlueLiteBlocker/archive/refs/tags/v0.0.0.5.zip) |
@@ -24,9 +26,9 @@ example of Tweet collapsing
 
 
 ### How To Install From Source
-Chrome: https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked
+Chrome: [chrome_install.md](/Instructions/Chrome/chrome_install.md)
 
-FireFox: https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/
+FireFox: [firefox_install.md](/Instructions/Firefox/firefox_install.md)
 
 ### How It Works
 The extension intercepts HTTP responses from Twitter's API and parses the tweet lists for Twitter Blue users. 
