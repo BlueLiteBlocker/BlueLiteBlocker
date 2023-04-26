@@ -12,11 +12,11 @@ You can customize the follower threshold and choose between collapsing or removi
 
 **[How to install from source](#How-To-Install-From-Source)**
 
-| Latest Release | Release Version |
-|----------------| ------------- |
-| Source Code    | [v0.0.0.5](https://github.com/MalwareTech/BlueLiteBlocker/archive/refs/tags/v0.0.0.5.zip) |
-| Chrome Store   | [v0.0.0.5](https://chrome.google.com/webstore/detail/blueliteblocker/gimbefnamedicgajjballjjhanhnpjce)  |
-| Firefox Store  | still waiting on approval.  |
+| Latest Release | Release Version                                                                                        |
+|----------------|--------------------------------------------------------------------------------------------------------|
+| Source Code    | [v0.0.0.5](https://github.com/MalwareTech/BlueLiteBlocker/archive/refs/tags/v0.0.0.5.zip)              |
+| Chrome Store   | [v0.0.0.5](https://chrome.google.com/webstore/detail/blueliteblocker/gimbefnamedicgajjballjjhanhnpjce) |
+| Firefox Store  | [v0.0.0.5](https://addons.mozilla.org/en-US/firefox/addon/blueliteblocker/)                            |
 
 [**Demo Video**](https://www.youtube.com/watch?v=nyQomTilJXo)
 <p style="text-align: center;" align="center">
