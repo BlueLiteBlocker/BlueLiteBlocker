@@ -13,7 +13,7 @@ You can customize the follower threshold and choose between collapsing or removi
 **Firefox**: waiting on store approval, use [source build](#Install-Instructions) for now.
 
 [Demo Video](https://www.youtube.com/watch?v=nyQomTilJXo)
-<p style="text-align: center;">
+<p style="text-align: center;" align="center">
   <img alt="" style="max-width: 100%;" src="/example_screenshot.png?1">
 example of Tweet collapsing
 </p>
