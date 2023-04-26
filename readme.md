@@ -8,7 +8,7 @@ You can customize the follower threshold and choose between collapsing or removi
 
 **Currently Supports**: FireFox, Chrome
 ### Release Builds
-**Note:** the WebStore take a while to approve extension updates. If the store version doesn't match the GitHub version, consider installing from [source](How To Install From Source) instead.
+**Note:** the WebStore take a while to approve extension updates. If the store version doesn't match the GitHub version, consider installing from [source](#How-To-Install-From-Source) instead.
 
 | Latest Release | Release Version |
 |----------------| ------------- |
