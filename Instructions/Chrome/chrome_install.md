@@ -1,12 +1,12 @@
-~~# Installing from source (Chrome)
+# Installing from source (Chrome)
 
-## Downloading & extracting
+### Downloading & extracting
 
 Download the latest zip from the [release page](https://github.com/MalwareTech/BlueLiteBlocker/releases)
 
 Extract to wherever you want.
 
-## Loading extensions via developer mode
+### Loading extensions via developer mode
 
 Navigate to [chrome://extensions](chrome://extensions) in the browser address bar
 
@@ -33,11 +33,11 @@ Ensure the `*://*.twitter.com/*` permission is enabled (blue)
 
 ![](enable_permissions.png)
 
-## Configure the settings
+### Configure the settings
 If you wish to change any settings, simply navigate to twitter.com and click the puzzle icon in to top right corner, followed by the extension icon.
 
 This will open the configuration page.
 
 ![](extension_icon.png)
 
-## All done!
+### All done!
