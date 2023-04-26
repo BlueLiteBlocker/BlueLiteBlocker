@@ -4,7 +4,7 @@
 
 ### About
 This extension allows you to hide Tweets from Twitter Blue users you don't follow, if they have less than a set number of followers.
-You can customize the follower threshold and choose between collapsing Tweets or removing them from your feed entirely. 
+You can customize the follower threshold and choose between collapsing or removing Tweets. 
 
 **Currently Supports**: FireFox, Chrome
 ### Release Builds
