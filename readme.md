@@ -1,7 +1,11 @@
 # ![Logo](BlueLiteBlocker/icons/logo-48.png) BlueLiteBlocker (v0.0.0.5)
 
-**Hide tweets from Twitter Blue users you don't follow without needing to mute or block them.
-Customizable to allow tweets from accounts with more than a set number of followers.**
+**Blue Checks are known to the state of California to cause eye damage and reproductive harm.**
+
+### About
+This extension allows you to hide Tweets from Twitter Blue users you don't follow, if they have less than a set number of followers.
+
+You can set a custom follower threshold and choose between collapsing Tweets or removing them from your feed entirely. 
 
 **Currently Supports**: FireFox, Chrome
 ### Release Builds
