@@ -20,10 +20,11 @@ function log_exception(e) {
 }
 
 class TwitterUser {
-    constructor(handle, name, followers, verified_type, we_follow, is_bluecheck, is_blocked) {
+    constructor(handle, name, followers, affiliated, verified_type, we_follow, is_bluecheck, is_blocked) {
         this.handle = handle;
         this.name = name;
         this.followers = followers;
+        this.affiliated = affiliated;
         this.verified_type = verified_type;
         this.we_follow = we_follow;
         this.is_bluecheck = is_bluecheck;
@@ -168,6 +169,7 @@ function get_tweet_user_info(item_content) {
     let verified_type = '';
     let following = false;
     let blocked = false;
+    let affiliated = false;
 
     // if the account is Business or Government, it will have the 'verified_type' field set
     if ('verified_type' in legacy_user_data) {
@@ -183,10 +185,14 @@ function get_tweet_user_info(item_content) {
         blocked = legacy_user_data['blocking'];
     }
 
+    if (typeof user_data['affiliates_highlighted_label']['label'] !== 'undefined')
+        affiliated = true;
+
     return new TwitterUser(
         legacy_user_data['screen_name'],
         legacy_user_data['name'],
         legacy_user_data['followers_count'],
+        affiliated,
         verified_type,
         following,
         user_data['is_blue_verified'],
@@ -200,13 +206,15 @@ function is_bad_user(user) {
     only block Twitter blue users who meet the following criteria:
       - aren't a business account
       - aren't a government account
+      - aren't organization affiliated
       - have less than X followers
       - aren't followed by us
     */
     return user.is_bluecheck
         && user.followers < blf_settings.follow_limit
         && user.we_follow === false
-        && user.verified_type === '';
+        && user.verified_type === ''
+        && user.affiliated === false;
 }
 
 function handleTweet(entry_type, item_content) {
@@ -221,9 +229,9 @@ function handleTweet(entry_type, item_content) {
 }
 
 function parse_search(json) {
-    if (typeof json['globalObjects'] === undefined ||
-        typeof json['globalObjects']['tweets']  === undefined ||
-        typeof json['globalObjects']['users']  === undefined){
+    if (typeof json['globalObjects'] === 'undefined' ||
+        typeof json['globalObjects']['tweets']  === 'undefined' ||
+        typeof json['globalObjects']['users']  === 'undefined'){
     }
 
     const tweets = json['globalObjects']['tweets'];
@@ -240,12 +248,17 @@ function parse_search(json) {
                         const tweet = tweets[tweet_idx];
                         const user_idx = tweet['user_id_str'];
                         const user_data = users[user_idx];
+                        let affiliated = false;
+
+                        if (typeof user_data['ext']['highlightedLabel']['r']['ok']['label'] !== 'undefined')
+                            affiliated = true;
 
                         const user = new TwitterUser(
                             user_data['screen_name'],
                             user_data['name'],
                             user_data['followers_count'],
-                            '',
+                            affiliated,
+                            user_data['ext_verified_type'],
                             user_data['following'],
                             user_data['ext_is_blue_verified'],
                             user_data['blocking']
