@@ -1,4 +1,4 @@
-const default_settings = {"settings": { hard_hide: false, follow_limit: 100000 }};
+const default_settings = { config_ver: 2, hard_hide: false, follow_limit: 100000, auto_block: false };
 
 // listen for setting changes and forward it to extension
 chrome.storage.onChanged.addListener((changes) => {
@@ -47,7 +47,14 @@ function send_settings_event(settings) {
 async function install_extension() {
     let settings = await get_extension_settings();
     if (Object.keys(settings).length === 0) {
-        settings = default_settings.settings;
+        settings = default_settings;
+        await write_local_storage({'settings': settings});
+    }
+
+    // if old settings version is detected, merge with new version
+    if(typeof settings.config_ver === 'undefined' || settings.config_ver !== default_settings.config_ver) {
+        settings = Object.assign(default_settings, settings);
+        settings.config_ver = default_settings.config_version;
         await write_local_storage({'settings': settings});
     }
 
