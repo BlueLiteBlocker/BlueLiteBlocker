@@ -21,19 +21,33 @@
         font-size: 110%;
         color: #cbc9c9;
     }
+
+    .row {
+        padding-bottom: 10px;
+        Display: block;
+    }
+
+    label {
+        padding-left: 10px;
+    }
 </style>
 <form name="block-settings" id="block-settings">
+    <h3 id="version-number">BlueLiteBlocker</h3></h3>
     <strong>Hard Filtering</strong><br/>
     removes filtered tweets from timeline entirely instead of just collapsing them<br/><br/>
+
+    <strong>Affiliated Users</strong><br/>
+    These are users with blue checks as a result of being associated with a verified brand. They are more likely to be high quality. </br></br>
 
     <strong>Follower Threshold</strong><br/>
     the minimum number of followers a Twitter Blue user must have to avoid filtering</br></br>
 
     Note: the auto-hide is completely passive and does not need to send requests to Twitter</br></br>
-    <label><strong>Enable Hard Filter </strong><input type="checkbox" id="hard-hide" name="hard-hide" /></label><br/><br/>
-    <label><strong>Follower Threshold </strong><input type="text" id="threshold" name="threshold" value="100000"/></label><br/><br/>
-    <button type="submit" id="submit" name="submit">Save Settings</button>
-    <br/><br/>
+    <div class="row"><input type="checkbox" id="hard-hide" name="hard-hide" /><label>Enable Hard Filter</label></div>
+    <div class="row"><input type="checkbox" id="allow-affiliate" name="allow-affiliate" /><label>Allow Affiliated Users</label></div>
+    <div class="row"><div class="row"></div><label>Follower Threshold</label></div>
+    <div class="row"></div><div class="row"><input type="text" width="100px" id="threshold" name="threshold" value="100000"/></div>
+    <div class="row"><button type="submit" id="submit" name="submit">Save Settings</button></div>
 </form>
 
 <script src="settings.js"></script>
