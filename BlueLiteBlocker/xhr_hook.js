@@ -243,7 +243,8 @@
                             const user_data = users[user_idx];
                             let affiliated = '';
 
-                            if (key_exists(user_data['ext'], 'highlightedLabel') &&
+                            if (key_exists(user_data, 'ext') &&
+                                key_exists(user_data['ext'], 'highlightedLabel') &&
                                 key_exists(user_data['ext']['highlightedLabel'], 'r') &&
                                 key_exists(user_data['ext']['highlightedLabel']['r'], 'ok') &&
                                 key_exists(user_data['ext']['highlightedLabel']['r']['ok'], 'label')
