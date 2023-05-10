@@ -20,11 +20,13 @@
     }
 
     class TwitterUser {
-        constructor(handle, name, followers, verified_type, we_follow, is_bluecheck, is_blocked) {
+        constructor(id, handle, name, followers, verified_type, affiliated, we_follow, is_bluecheck, is_blocked) {
+            this.id = id;
             this.handle = handle;
             this.name = name;
             this.followers = followers;
             this.verified_type = verified_type;
+            this.affiliated = affiliated;
             this.we_follow = we_follow;
             this.is_bluecheck = is_bluecheck;
             this.is_blocked = is_blocked;
@@ -145,7 +147,6 @@
 
         // only process results with type TimelineTweet (all tweets should have this type)
         if (item_content['itemType'] !== 'TimelineTweet') {
-            console.warn(`invalid itemType: ${item_content['itemType']}`)
             return false;
         }
 
@@ -165,33 +166,26 @@
 
         const user_data = tweet_data['core']['user_results']['result'];
         const legacy_user_data = user_data['legacy'];
+        let affiliated = '';
 
-        let verified_type = '';
-        let following = false;
-        let blocked = false;
-
-        // if the account is Business or Government, it will have the 'verified_type' field set
-        if ('verified_type' in legacy_user_data) {
-            verified_type = legacy_user_data['verified_type'];
-        }
-
-        // if we are following the account it will have the 'following' field set
-        if ('following' in legacy_user_data) {
-            following = legacy_user_data['following'];
-        }
-
-        if ('blocking' in legacy_user_data) {
-            blocked = legacy_user_data['blocking'];
+        if (key_exists(user_data, 'affiliates_highlighted_label') &&
+            key_exists(user_data['affiliates_highlighted_label'], 'label') &&
+            key_exists(user_data['affiliates_highlighted_label']['label'], 'userLabelType')
+        ) {
+            const label = user_data['affiliates_highlighted_label']['label'];
+            affiliated = safe_get_value(label, 'userLabelType', '');
         }
 
         return new TwitterUser(
+            safe_get_value(user_data, 'rest_id', 'undefined'),
             legacy_user_data['screen_name'],
             legacy_user_data['name'],
             legacy_user_data['followers_count'],
-            verified_type,
-            following,
+            safe_get_value(legacy_user_data, 'verified_type', ''),
+            affiliated,
+            safe_get_value(legacy_user_data, 'following', false),
             user_data['is_blue_verified'],
-            blocked,
+            safe_get_value(legacy_user_data, 'blocking', false),
         );
     }
 
@@ -204,10 +198,15 @@
           - have less than X followers
           - aren't followed by us
         */
-        return user.is_bluecheck
+        let bad_user = user.is_bluecheck
             && user.followers < blf_settings.follow_limit
             && user.we_follow === false
             && user.verified_type === '';
+
+        if (blf_settings.allow_affiliate && user.affiliated !== '')
+            bad_user = false;
+
+        return bad_user;
     }
 
     function handleTweet(entry_type, item_content) {
@@ -222,9 +221,10 @@
     }
 
     function parse_search(json) {
-        if (typeof json['globalObjects'] === undefined ||
-            typeof json['globalObjects']['tweets'] === undefined ||
-            typeof json['globalObjects']['users'] === undefined) {
+        if (!key_exists(json, 'globalObjects') ||
+            !key_exists(json['globalObjects'], 'tweets') ||
+            !key_exists(json['globalObjects'], 'users')) {
+            return;
         }
 
         const tweets = json['globalObjects']['tweets'];
@@ -233,20 +233,32 @@
         json['timeline']['instructions'].forEach(instruction => {
             if ('addEntries' in instruction) {
                 instruction['addEntries']['entries'].forEach((entry, index) => {
-                    if ('item' in entry['content'] && 'clientEventInfo' in entry['content']['item']) {
-                        if ('tweet' in entry['content']['item']['content']) {
+                    if (key_exists(entry['content'], 'item') && key_exists(entry['content']['item'], 'clientEventInfo')) {
+                        if (key_exists(entry['content']['item']['content'], 'tweet')) {
 
                             // the search API is a complete mess, so we have to use index lookups and can't soft-hide tweets
                             const tweet_idx = entry['content']['item']['content']['tweet']['id'];
                             const tweet = tweets[tweet_idx];
                             const user_idx = tweet['user_id_str'];
                             const user_data = users[user_idx];
+                            let affiliated = '';
+
+                            if (key_exists(user_data['ext'], 'highlightedLabel') &&
+                                key_exists(user_data['ext']['highlightedLabel'], 'r') &&
+                                key_exists(user_data['ext']['highlightedLabel']['r'], 'ok') &&
+                                key_exists(user_data['ext']['highlightedLabel']['r']['ok'], 'label')
+                            ) {
+                                const label = user_data['ext']['highlightedLabel']['r']['ok']['label'];
+                                affiliated = safe_get_value(label, 'userLabelType', '');
+                            }
 
                             const user = new TwitterUser(
+                                user_data['id_str'],
                                 user_data['screen_name'],
                                 user_data['name'],
                                 user_data['followers_count'],
-                                '',
+                                safe_get_value(user_data, 'ext_verified_type', ''),
+                                affiliated,
                                 user_data['following'],
                                 user_data['ext_is_blue_verified'],
                                 user_data['blocking']
@@ -329,4 +341,17 @@
 
         return JSON.stringify(json);
     }
+
+    function key_exists(object, key) {
+        return typeof object[key] !== 'undefined';
+    }
+
+    function safe_get_value(object, key, default_value) {
+        if(key_exists(object, key)) {
+            return object[key];
+        }
+
+        return default_value;
+    }
+
 })();
