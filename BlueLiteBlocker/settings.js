@@ -13,7 +13,7 @@ function saveOptions(e) {
 
 function restoreSettings() {
     chrome.storage.sync.get("settings", function(res) {
-            document.querySelector("#version-number").innerHTML = 'BlueLiteBlocker v' + res.settings.version;
+            document.querySelector("#version-number").innerText = 'BlueLiteBlocker v' + res.settings.version;
             document.querySelector("#hard-hide").checked = res.settings.hard_hide;
             document.querySelector("#allow-affiliate").checked = res.settings.allow_affiliate;
             document.querySelector("#threshold").value = res.settings.follow_limit
