@@ -1,4 +1,4 @@
-const default_settings = { config_ver: 2, hard_hide: false, follow_limit: 100000, auto_block: false };
+const default_settings = { version: "0.0.0.8", config_ver: 4, hard_hide: false, allow_affiliate: true, follow_limit: 100000 };
 
 // listen for setting changes and forward it to extension
 chrome.storage.onChanged.addListener((changes) => {
@@ -54,7 +54,9 @@ async function install_extension() {
     // if old settings version is detected, merge with new version
     if(typeof settings.config_ver === 'undefined' || settings.config_ver !== default_settings.config_ver) {
         settings = Object.assign(default_settings, settings);
-        settings.config_ver = default_settings.config_version;
+        settings.config_ver = default_settings.config_ver;
+        console.log('new version');
+        console.log(settings);
         await write_local_storage({'settings': settings});
     }
 
