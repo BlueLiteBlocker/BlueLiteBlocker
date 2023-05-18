@@ -35,11 +35,14 @@
 
     // hook XMLHttpRequest.open to filter API responses and remove any blue check tweets
     let old_xml_open = XMLHttpRequest.prototype.open;
+
     XMLHttpRequest.prototype.open = function () {
         if (arguments.length >= 2 && arguments[0] !== "") {
 
             // hook HomeTimeline API to parse timeline tweets
-            if (arguments[1].search('https://twitter.com/i/api/graphql/.*/HomeTimeline') !== -1) {
+            if (arguments[1].search('https://twitter.com/i/api/graphql/.*/HomeTimeline') !== -1 ||
+                arguments[1].search('https://twitter.com/i/api/graphql/.*/HomeLatestTimeline') !== -1
+            ) {
                 if (!this._xhr_response_hooked) {
                     this._xhr_response_hooked = true;
                     set_response_hook(this, 'home');
@@ -107,7 +110,7 @@
         setup();
     }
 
-    function hide_tweet(tweet_results, hard_hide) {
+    function hide_tweet(tweet_results, hard_hide, hide_message='Hidden Twitter Blue Tweet') {
         if (tweet_results['result']['__typename'] === 'Tweet') {
             const old_tweet_results = structuredClone(tweet_results['result']);
 
@@ -128,7 +131,7 @@
                     "displayType": "EntireTweet",
                     "text": {
                         "rtl": false,
-                        "text": "This Twitter Blue tweet has been hidden to save your brain cells.",
+                        "text": hide_message,
                         "entities": []
                     },
                     "revealText": {
@@ -157,6 +160,9 @@
         }
 
         let tweet_data = item_content['tweet_results']['result'];
+        if(blf_settings.hide_promote && key_exists(item_content, 'promotedMetadata')) {
+            hide_tweet(item_content['tweet_results'], false, 'Hidden Ad');
+        }
 
         // tweets of type 'TweetWithVisibilityResults' have a slightly different format we need to parse
         if (tweet_data['__typename'] === 'TweetWithVisibilityResults') {
