@@ -64,6 +64,5 @@ testing.
 
 
 ## Updates
-
-Follow me on https://infosec.exchange/@malwaretech for updates.
+Follow me on https://twitter.com/BlueLiteBlocker for updates.
  
