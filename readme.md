@@ -1,4 +1,4 @@
-# ![Logo](BlueLiteBlocker/icons/logo-48.png) BlueLiteBlocker (v0.0.0.8)
+# ![Logo](BlueLiteBlocker/icons/logo-48.png) BlueLiteBlocker (v0.0.0.9)
 
 **Blue Checks are known to the state of California to cause eye damage and reproductive harm.**
 
@@ -14,9 +14,9 @@ You can customize the follower threshold and choose between collapsing or removi
 
 | Latest Release | Release Version                                                                                        |
 |----------------|--------------------------------------------------------------------------------------------------------|
-| Source Code    | [v0.0.0.8](https://github.com/MalwareTech/BlueLiteBlocker/archive/refs/tags/v0.0.0.8.zip)              |
-| Chrome Store   | [v0.0.0.8](https://chrome.google.com/webstore/detail/blueliteblocker/gimbefnamedicgajjballjjhanhnpjce) |
-| Firefox Store  | [v0.0.0.8](https://addons.mozilla.org/en-US/firefox/addon/blueliteblocker/)                            |
+| Source Code    | [v0.0.0.9](https://github.com/MalwareTech/BlueLiteBlocker/archive/refs/tags/v0.0.0.9.zip)              |
+| Chrome Store   | [v0.0.0.9](https://chrome.google.com/webstore/detail/blueliteblocker/gimbefnamedicgajjballjjhanhnpjce) |
+| Firefox Store  | [v0.0.0.9](https://addons.mozilla.org/en-US/firefox/addon/blueliteblocker/)                            |
 
 [**Demo Video**](https://www.youtube.com/watch?v=nyQomTilJXo)
 <p style="text-align: center;" align="center">
