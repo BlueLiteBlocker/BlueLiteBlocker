@@ -1,38 +1,11 @@
-const default_settings = {"settings": { hard_hide: false, follow_limit: 100000 }};
-
 // listen for setting changes and forward it to extension
 chrome.storage.onChanged.addListener((changes) => {
     if (typeof changes.settings !==  'undefined' && typeof changes.settings.newValue !== 'undefined') {
         const settings = changes.settings.newValue;
         send_settings_event(settings);
+        console.log('sent settings event');
     }
 });
-
-// synchronous get extension settings
-const get_extension_settings = async () => {
-    return new Promise((resolve) => {
-        chrome.storage.sync.get('settings', function (result) {
-            if (result['settings'] === undefined) {
-                resolve({});
-            } else {
-                resolve(result['settings']);
-            }
-        });
-    });
-};
-
-// synchronous set extension settings
-const write_local_storage = async function(obj) {
-    return new Promise((resolve, reject) => {
-        try {
-            chrome.storage.sync.set(obj, function() {
-                resolve();
-            });
-        } catch (ex) {
-            reject(ex);
-        }
-    });
-};
 
 // send settings to the worker script via browser event
 function send_settings_event(settings) {
@@ -45,12 +18,6 @@ function send_settings_event(settings) {
 
 // install extension
 async function install_extension() {
-    let settings = await get_extension_settings();
-    if (Object.keys(settings).length === 0) {
-        settings = default_settings.settings;
-        await write_local_storage({'settings': settings});
-    }
-
     // inject BlueLiteBlocker worker script into webpage
     let s = document.createElement('script');
     s.type = "text/javascript";
@@ -59,7 +26,10 @@ async function install_extension() {
     document.documentElement.appendChild(s);
     s.onload = function() {
         this.remove();
-        send_settings_event(settings);
+        chrome.storage.sync.get('settings', function (settings) {
+            console.log(settings.settings);
+            send_settings_event(settings.settings);
+        });
     };
 }
 

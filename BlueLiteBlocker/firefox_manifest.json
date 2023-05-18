@@ -1,0 +1,49 @@
+{
+
+  "manifest_version": 2,
+  "name": "BlueLiteBlocker",
+  "version": "0.0.0.9",
+
+  "description": "Filter tweets from Twitter Blue users without having to block or mute them.",
+
+  "icons": {
+    "48": "icons/logo-48.png",
+    "128": "icons/logo-128.png"
+  },
+
+  "options_ui": {
+    "page": "settings.html",
+    "browser_style": true
+  },
+
+  "browser_action": {
+    "default_area": "navbar",
+    "default_icon": {
+      "128": "icons/logo-128.png"
+    },
+    "default_popup": "settings.html"
+  },
+
+  "permissions": ["storage"],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "bluelitefilter@malwaretech.com",
+      "strict_min_version": "57.0"
+    }
+  },
+
+  "web_accessible_resources": ["xhr_hook.js"],
+
+  "background": {
+    "scripts": ["extension.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.twitter.com/*"],
+      "run_at": "document_start",
+      "js": ["injector.js"]
+    }
+  ]
+}

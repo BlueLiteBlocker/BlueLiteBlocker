@@ -1,25 +1,25 @@
-function saveOptions(e) {
+async function saveOptions(e) {
     e.preventDefault();
 
-    const settings =  {
-        hard_hide: document.querySelector("#hard-hide").checked == 1,
-        follow_limit: document.querySelector("#threshold").value
-    }
+    let settings = {};
 
-    chrome.storage.sync.set({settings: settings });
-    console.log(settings);
-    window.postMessage({ type: "settingsUpdate", params: settings }, "*");
+    settings.hard_hide = document.querySelector("#hard-hide").checked === true;
+    settings.hide_promote = document.querySelector("#hide-promote").checked === true;
+    settings.allow_affiliate = document.querySelector("#allow-affiliate").checked === true;
+    settings.follow_limit = document.querySelector("#threshold").value;
+
+    chrome.runtime.sendMessage({ method: 'setSettings', data: settings});
+
+    window.close();
 }
 
 function restoreSettings() {
-    chrome.storage.sync.get("settings", function(res){
-        if (typeof res.settings === 'undefined') {
-            document.querySelector("#hard-hide").checked = default_settings["settings"]["hard_hide"];
-            document.querySelector("#threshold").value = default_settings["settings"]["follow_limit"];
-        }else {
-            document.querySelector("#hard-hide").checked = res.settings.hard_hide;
-            document.querySelector("#threshold").value = res.settings.follow_limit;
-        }
+    chrome.runtime.sendMessage({ method: 'getSettings'}, async function(settings) {
+        document.querySelector("#version-number").innerText = 'BlueLiteBlocker v' + settings.version;
+        document.querySelector("#hard-hide").checked = settings.hard_hide;
+        document.querySelector("#hide-promote").checked = settings.hide_promote;
+        document.querySelector("#allow-affiliate").checked = settings.allow_affiliate;
+        document.querySelector("#threshold").value = settings.follow_limit;
     });
 }
 
