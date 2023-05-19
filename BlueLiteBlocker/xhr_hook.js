@@ -66,7 +66,8 @@
             }
 
             // hook notifications API to parse notification feed
-            if (arguments[1].search('https://twitter.com/i/api/2/notifications/.*') !== -1) {
+            if (arguments[1].search('https://twitter.com/i/api/2/notifications/all.json') !== -1 ||
+                arguments[1].search('https://twitter.com/i/api/2/notifications/mentions.json') !== -1) {
                 if (!this._xhr_response_hooked) {
                     this._xhr_response_hooked = true;
                     set_response_hook(this, 'search');
@@ -274,7 +275,9 @@
                             if (is_bad_user(user)) {
                                 // we can prevent tweets from being displayed by removing 'displayType'
                                 //note: due to the way the client works, we can only remove tweets not collapse them.
-                                entry['content']['item']['content']['tweet']['displayType'] = '';
+                                if(key_exists(entry['content']['item']['content'], 'tweet')) {
+                                    entry['content']['item']['content']['tweet']['displayType'] = '';
+                                }
                                 console.log(`Tweet removed from @${user.handle} (Blue User - ${user.followers} followers)`);
                             }
                         }
