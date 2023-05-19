@@ -16,7 +16,7 @@
     "browser_style": true
   },
 
-  "browser_action": {
+  "action": {
     "default_area": "navbar",
     "default_icon": {
       "128": "icons/logo-128.png"
